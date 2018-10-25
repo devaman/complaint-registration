@@ -1,39 +1,31 @@
-import Web3 from 'web3'
+const Web3 = require("web3") // import web3 v1.0 constructor
+const getWeb3 = () => {
+  var provider ;
+  provider = window.web3.currentProvider 
+  let myWeb3;
+  if(provider){
+    myWeb3 = new Web3(provider)
+  }else{
+    provider = new Web3.providers.HttpProvider("http://localhost:8545");
+    myWeb3 = new Web3(provider)
 
-let getWeb3 = new Promise(function(resolve, reject) {
-  // Wait for loading completion to avoid race conditions with web3 injection timing.
-  window.addEventListener('load', function() {
-    var results
-    var web3 = window.web3
+  }
 
-    // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-    if (typeof web3 !== 'undefined') {
-      // Use Mist/MetaMask's provider.
-      web3 = new Web3(web3.currentProvider)
+  /* 
+  Uncomment the below code to run on rinkeby test net
+  */
+  // var HDWalletProvider = require("truffle-hdwallet-provider");
+  // const mnemonic = "";
+  // var provider = new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/i1b6qEdLoWdspQ1ozvk4",0,10);
 
-      results = {
-        web3: web3
-      }
+  return myWeb3
+}
+const web3 = getWeb3();
+// assumes passed-in web3 is v1.0 and creates a function to receive contract name
+const getContractInstance = (abi, deployedAddress) => {
+  abi = JSON.parse(JSON.stringify(abi))
+  const instance = new web3.eth.Contract(abi.abi, deployedAddress)
+  return instance
+}
 
-      console.log('Injected web3 detected.');
-
-      resolve(results)
-    } else {
-      // Fallback to localhost if no web3 injection. We've configured this to
-      // use the development console's port by default.
-      var provider = new Web3.providers.HttpProvider('HTTP://127.0.0.1:8545')
-
-      web3 = new Web3(provider)
-
-      results = {
-        web3: web3
-      }
-
-      console.log('No web3 instance injected, using Local web3.');
-
-      resolve(results)
-    }
-  })
-})
-
-export default getWeb3
+module.exports = { getWeb3, getContractInstance }

@@ -1,4 +1,5 @@
 pragma solidity ^0.4.22;
+pragma experimental ABIEncoderV2;
 contract owned{
     address public owner;
     constructor() public{
@@ -21,7 +22,7 @@ contract Complaint is owned
         uint256 cat;
         uint256 sub_cat;
         uint256 date ;
-        bytes32  complaint;
+        bytes  complaint;
         bool accepted;
         bool closed;
     
@@ -47,7 +48,7 @@ contract Complaint is owned
         judgeName[cat][scat]=name;
         return true;
     }
-  function registerComplaint(bytes32 name,bytes32 rln,uint256 cat,uint256 scat,uint256 dt,bytes32 s) public returns(bool)
+  function registerComplaint(bytes32 name,bytes32 rln,uint256 cat,uint256 scat,uint256 dt,bytes s) public returns(bool)
   {
       arr.push(complaint({
           creator:msg.sender,
@@ -65,7 +66,7 @@ contract Complaint is owned
   }
   
   
-  function getValuesByIndex(uint256 index ) public view  returns(address,bytes32,bytes32,uint256,uint256,uint256,bytes32,bool,bool)
+  function getValuesByIndex(uint256 index ) public view  returns(address,bytes32,bytes32,uint256,uint256,uint256,bytes,bool,bool)
   {
       
       complaint storage founded = arr[index];
@@ -87,11 +88,11 @@ contract Complaint is owned
         }
       return(creators,names,rollnos);
   }
-  function getAllValuesComplaints() public view returns(uint256[],uint256[],uint256[],bytes32[],bool[],bool[]){
+  function getAllValuesComplaints() public view returns(uint256[],uint256[],uint256[],bytes[],bool[],bool[]){
       uint256[] memory cats = new uint256[](arr.length);
       uint256[] memory scats = new uint256[](arr.length);
       uint256[] memory dates = new uint256[](arr.length);
-      bytes32[] memory complaints = new bytes32[](arr.length);
+      bytes[] memory complaints = new bytes[](arr.length);
       bool[] memory accepteds = new bool[](arr.length);
       bool[] memory closeds = new bool[](arr.length);
         for (uint i = 0; i < arr.length; i++) {

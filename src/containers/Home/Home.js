@@ -20,11 +20,12 @@ class Home extends Component {
             accounts,
             load: false
         })
-
+        
 
 
     }
     render() {
+        
         console.log(this.state.accounts);
         if (this.state.load) {
             return (<Loader />)

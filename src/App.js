@@ -7,6 +7,7 @@ import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 import Home from './containers/Home/Home';
+import Register from './containers/Register/Register';
 class App extends Component {
 
 
@@ -15,6 +16,7 @@ class App extends Component {
       <BrowserRouter>
           <Switch>
             <Route path='/' exact component={Home} />
+            <Route path='/register' exact component={Register} />
           </Switch>
       </BrowserRouter>
     );

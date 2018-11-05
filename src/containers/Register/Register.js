@@ -4,6 +4,7 @@ import { getWeb3, getContractInstance } from '../../utils/getWeb3'
 import Loader from '../../components/Loader/Loader.js';
 import './Register.css'
 import address from "../../utils/ContractAddress";
+import { withRouter } from "react-router";
 let web3 = getWeb3();
 let complaintInstance = getContractInstance(ComplaintContract, address)
 class Register extends Component {
@@ -79,7 +80,8 @@ class Register extends Component {
                 <nav className="navbar pure-menu pure-menu-horizontal">
                     <a href="javascript:void(0);" onClick={() => { this.props.history.push('/') }} className="pure-menu-heading pure-menu-link">Complaints</a>
                     <a href="javascript:void(0);" onClick={() => { this.props.history.push('/register') }} className="pure-menu-heading pure-menu-link">Register</a>
-                    <a href="javascript:void(0);" onClick={() => { this.props.history.push('/accepted') }} className="pure-menu-heading pure-menu-link">Accepted</a>
+                    {this.props.admin ? <a href="javascript:void(0);" onClick={() => { this.props.history.push('/admin') }} className="pure-menu-heading pure-menu-link">Admin</a> : ""}
+               
                 </nav>
 
                 <main className="container">
@@ -132,4 +134,4 @@ class Register extends Component {
         );
     }
 };
-export default Register;
+export default withRouter(Register);

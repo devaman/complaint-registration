@@ -4,6 +4,8 @@ import Loader from "../../components/Loader/Loader";
 import { getWeb3, getContractInstance } from '../../utils/getWeb3'
 import address from "../../utils/ContractAddress";
 import ComplaintItems from '../../components/ComplaintItems/ComplaintItems.js';
+import './Home.css'
+import { withRouter } from "react-router";
 let web3 = getWeb3();
 let complaintInstance = getContractInstance(ComplaintContract, address)
 
@@ -20,6 +22,9 @@ class Home extends Component {
             sub: [],
             complaint: [],
             timestamp: 0,
+            accepted:[],
+            closed:[],
+            show:[]
         }
     }
 
@@ -37,7 +42,9 @@ class Home extends Component {
         cmp2[2] = cmp2[2].map((i) => {
             return web3.utils.toAscii(i)
         })
-
+        let arr = Array(cmp1.length).fill(true);
+        console.log(arr);
+        
         this.setState({
             accounts,
             complaints: {
@@ -49,8 +56,8 @@ class Home extends Component {
                 timestamp: cmp1[2],
                 complaint: cmp1[3],
                 accepted: cmp1[4],
-                closed: cmp1[5]
-
+                closed: cmp1[5],
+                show:arr
             },
             load: false
         })
@@ -58,25 +65,56 @@ class Home extends Component {
 
 
     }
+    onClickAccepted = ()=>{
 
+        this.setState({
+            complaints:{
+                ...this.state.complaints,
+                show:[...this.state.complaints.accepted]
+            }
+        })
+    }
+    onClickClosed = ()=>{
+
+        this.setState({
+            complaints:{
+                ...this.state.complaints,
+                show:[...this.state.complaints.closed]
+            }
+        })
+    }
+    onClickAll = ()=>{
+        let arr = Array(this.state.complaints.cat.length).fill(true);
+        this.setState({
+            complaints:{
+                ...this.state.complaints,
+                show:arr
+            }
+        })
+    }
     render() {
 
-
         return (
-            <div className="App">
+            <div className="Home">
                 {this.state.load ? <Loader /> : ""}
 
                 <nav className="navbar pure-menu pure-menu-horizontal">
                     <a href="javascript:void(0);" onClick={() => { this.props.history.push('/') }} className="pure-menu-heading pure-menu-link">Complaints</a>
                     <a href="javascript:void(0);" onClick={() => { this.props.history.push('/register') }} className="pure-menu-heading pure-menu-link">Register</a>
-                    <a href="javascript:void(0);" onClick={() => { this.props.history.push('/accepted') }} className="pure-menu-heading pure-menu-link">Accepted</a>
-                </nav>
+                    {this.props.admin?<a href="javascript:void(0);" onClick={() => { this.props.history.push('/admin') }} className="pure-menu-heading pure-menu-link">Admin</a>:""}
 
+                </nav>
                 <main className="container">
+                    <li className="pure-menu pure-menu-horizontal center" style={{listStyle:"none"}}>
+                    <a href="javascript:void(0);" onClick={this.onClickAll} className="pure-menu-heading pure-menu-link">All</a>
+                    <a href="javascript:void(0);" onClick={this.onClickAccepted} className="pure-menu-heading pure-menu-link">Accepted</a>
+                    <a href="javascript:void(0);" onClick={this.onClickClosed} className="pure-menu-heading pure-menu-link">Closed</a>
+
+                </li>
                     <ComplaintItems {...this.state.complaints} />
                 </main>
             </div>
         );
     };
 };
-export default Home;
+export default withRouter( Home);

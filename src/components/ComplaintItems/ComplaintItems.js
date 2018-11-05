@@ -13,9 +13,10 @@ const ComplaintItems = (props) => {
         const complaint = props.complaint[index];
         const accepted = props.accepted[index].toString();
         const closed = props.closed[index].toString();
+        const show = props.show[index];
         complaints.push(
             <ComplaintItem creator={creator} name={name} rollno={rollno} cat={cat}
-            sub={sub} timestamp={timestamp} complaint={complaint} accepted={accepted} closed={closed}/>
+            sub={sub} timestamp={timestamp} complaint={complaint} accepted={accepted} closed={closed} show={show}/>
         )
 
     }

@@ -74,6 +74,17 @@ class Home extends Component {
             }
         })
     }
+    onClickOpened = ()=>{
+
+        this.setState({
+            complaints:{
+                ...this.state.complaints,
+                show:this.state.complaints.accepted.map((data)=>{
+                    return !data;
+                })
+            }
+        })
+    }
     onClickClosed = ()=>{
 
         this.setState({
@@ -106,12 +117,13 @@ class Home extends Component {
                 </nav>
                 <main className="container">
                     <li className="pure-menu pure-menu-horizontal center" style={{listStyle:"none"}}>
+                    <a href="javascript:void(0);" onClick={this.onClickOpened} className="pure-menu-heading pure-menu-link">Opened</a>
                     <a href="javascript:void(0);" onClick={this.onClickAll} className="pure-menu-heading pure-menu-link">All</a>
                     <a href="javascript:void(0);" onClick={this.onClickAccepted} className="pure-menu-heading pure-menu-link">Accepted</a>
                     <a href="javascript:void(0);" onClick={this.onClickClosed} className="pure-menu-heading pure-menu-link">Closed</a>
 
                 </li>
-                    <ComplaintItems {...this.state.complaints} />
+                    <ComplaintItems {...this.state.complaints} account={this.state.accounts}/>
                 </main>
             </div>
         );

@@ -56,8 +56,8 @@ class ComplaintItem extends Component {
                     <label>Date :  {date.toDateString()}</label>
                     <label>Time :{date.toLocaleTimeString()}</label>
                     <label>Complaint : {this.props.complaint}</label>
-                    <label>Accepted : {this.props.accepted}</label>
-                    <label>Closed : {this.props.closed}</label>
+                    {/* <label>Accepted : {this.props.accepted}</label> */}
+                    {/* <label>Closed : {this.props.closed}</label> */}
                     <label>creator : {this.props.creator}</label>
                     <div>
                         {this.props.accepted == "false" && this.props.closed == "false" && this.state.judge ?

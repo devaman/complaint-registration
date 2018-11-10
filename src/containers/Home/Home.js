@@ -122,7 +122,7 @@ class Home extends Component {
         this.setState({
             complaints: {
                 ...this.state.complaints,
-                show: this.state.complaints.accepted.map((data) => {
+                show: this.state.complaints.closed.map((data) => {
                     return !data;
                 })
             }
@@ -161,10 +161,10 @@ class Home extends Component {
                 </nav>
                 <main className="cont">
                     <span className="pure-menu pure-menu-horizontal center" style={{ listStyle: "none" }}>
-                        <a href="javascript:void(0);" onClick={this.onClickAll} className="pure-menu-heading pure-menu-link">All</a>
-                        <a href="javascript:void(0);" onClick={this.onClickOpened} className="pure-menu-heading pure-menu-link">Opened</a>
-                        <a href="javascript:void(0);" onClick={this.onClickAccepted} className="pure-menu-heading pure-menu-link">Accepted</a>
-                        <a href="javascript:void(0);" onClick={this.onClickClosed} className="pure-menu-heading pure-menu-link">Closed</a>
+                        <a href="javascript:void(0);" onClick={this.onClickAll} className="pure-menu-heading pure-menu-link" id="Allli">All</a>
+                        <a href="javascript:void(0);" onClick={this.onClickOpened} className="pure-menu-heading pure-menu-link" id="Openedli">Opened</a>
+                        <a href="javascript:void(0);" onClick={this.onClickAccepted} className="pure-menu-heading pure-menu-link" id="Acceptedli">Accepted</a>
+                        <a href="javascript:void(0);" onClick={this.onClickClosed} className="pure-menu-heading pure-menu-link" id="Closedli">Closed</a>
 
                     </span>
                     <ComplaintItems {...this.state.complaints} updateAcceptedArr={this.updateAcceptedArr} updateClosedArr={this.updateClosedArr} account={this.state.accounts} />

@@ -48,6 +48,12 @@ contract Complaint is owned
         judgeName[cat][scat]=name;
         return true;
     }
+    function isJudge(uint256 cat,uint256 scat) public view  returns(bool){
+        if(msg.sender==judge[cat][scat])
+        return true;
+        else
+        return false;
+    }
   function registerComplaint(bytes32 name,bytes32 rln,uint256 cat,uint256 scat,uint256 dt,bytes s) public returns(bool)
   {
       arr.push(complaint({

@@ -34,7 +34,10 @@ class Admin extends Component {
         this.setState({
             load:true
         })
-        complaintInstance.methods.setJugde(this.state.cat, this.state.sub, this.state.address, this.state.name).send({ from: this.state.accounts }, (err) => {
+        // console.log(this.state.cat, this.state.sub);
+        let cat = parseInt(this.state.cat);
+        let sub = parseInt(this.state.sub);
+        complaintInstance.methods.setJugde(cat, sub, this.state.address, this.state.name).send({ from: this.state.accounts }, (err) => {
             if (err) {
                 let mesg = err.message.split(":")
                 mesg = mesg[mesg.length - 1];

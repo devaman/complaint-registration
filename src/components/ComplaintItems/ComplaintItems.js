@@ -15,7 +15,7 @@ const ComplaintItems = (props) => {
         const closed = props.closed[index].toString();
         const show = props.show[index];
         complaints.push(
-            <ComplaintItem account = {props.account} creator={creator} name={name} rollno={rollno} cat={cat}
+            <ComplaintItem updateAcceptedArr={props.updateAcceptedArr} updateClosedArr={props.updateClosedArr} index={index} account = {props.account} creator={creator} name={name} rollno={rollno} cat={cat}
             sub={sub} timestamp={timestamp} complaint={complaint} accepted={accepted} closed={closed} show={show}/>
         )
 

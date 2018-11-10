@@ -22,13 +22,56 @@ class Home extends Component {
             sub: [],
             complaint: [],
             timestamp: 0,
-            accepted:[],
-            closed:[],
-            show:[]
+            accepted: [],
+            closed: [],
+            show: []
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
+        this.fn();
+
+    }
+    // updateShowArr = (index, val) => {
+    //     this.setState({
+    //         complaints: {
+    //             ...this.state.complaints,
+    //             show: this.state.complaints.show.map((d, i) => {
+    //                 if (i === index) {
+    //                     return val;
+    //                 }
+    //                 else return d;
+    //             })
+    //         }
+    //     })
+    // }
+    updateAcceptedArr = (index, val) => {
+        this.setState({
+            complaints: {
+                ...this.state.complaints,
+                accepted: this.state.complaints.accepted.map((d, i) => {
+                    if (i === index) {
+                        return val;
+                    }
+                    else return d;
+                })
+            }
+        })
+    }
+    updateClosedArr = (index, val) => {
+        this.setState({
+            complaints: {
+                ...this.state.complaints,
+                closed: this.state.complaints.closed.map((d, i) => {
+                    if (i === index) {
+                        return val;
+                    }
+                    else return d;
+                })
+            }
+        })
+    }
+    fn = async () => {
 
         let accounts = await web3.eth.getAccounts();
         let cmp1 = await complaintInstance.methods.getAllValuesComplaints().call();
@@ -42,9 +85,9 @@ class Home extends Component {
         cmp2[2] = cmp2[2].map((i) => {
             return web3.utils.toAscii(i)
         })
-        let arr = Array(cmp1.length).fill(true);
+        let arr = Array(cmp1[0].length).fill(true);
         console.log(arr);
-        
+
         this.setState({
             accounts,
             complaints: {
@@ -57,52 +100,53 @@ class Home extends Component {
                 complaint: cmp1[3],
                 accepted: cmp1[4],
                 closed: cmp1[5],
-                show:arr
+                show: arr
             },
             load: false
         })
 
 
-
     }
-    onClickAccepted = ()=>{
+    onClickAccepted = () => {
 
         this.setState({
-            complaints:{
+            complaints: {
                 ...this.state.complaints,
-                show:[...this.state.complaints.accepted]
+                show: [...this.state.complaints.accepted]
             }
         })
     }
-    onClickOpened = ()=>{
+    // onChangeAccepted
+    onClickOpened = () => {
 
         this.setState({
-            complaints:{
+            complaints: {
                 ...this.state.complaints,
-                show:this.state.complaints.accepted.map((data)=>{
+                show: this.state.complaints.accepted.map((data) => {
                     return !data;
                 })
             }
         })
     }
-    onClickClosed = ()=>{
+    onClickClosed = () => {
 
         this.setState({
-            complaints:{
+            complaints: {
                 ...this.state.complaints,
-                show:[...this.state.complaints.closed]
+                show: [...this.state.complaints.closed]
             }
         })
     }
-    onClickAll = ()=>{
+    onClickAll = () => {
         let arr = Array(this.state.complaints.cat.length).fill(true);
         this.setState({
-            complaints:{
+            complaints: {
                 ...this.state.complaints,
-                show:arr
+                show: arr
             }
         })
     }
+    on
     render() {
 
         return (
@@ -112,21 +156,21 @@ class Home extends Component {
                 <nav className="navbar pure-menu pure-menu-horizontal">
                     <a href="javascript:void(0);" onClick={() => { this.props.history.push('/') }} className="pure-menu-heading pure-menu-link">Complaints</a>
                     <a href="javascript:void(0);" onClick={() => { this.props.history.push('/register') }} className="pure-menu-heading pure-menu-link">Register</a>
-                    {this.props.admin?<a href="javascript:void(0);" onClick={() => { this.props.history.push('/admin') }} className="pure-menu-heading pure-menu-link">Admin</a>:""}
+                    {this.props.admin ? <a href="javascript:void(0);" onClick={() => { this.props.history.push('/admin') }} className="pure-menu-heading pure-menu-link">Admin</a> : ""}
 
                 </nav>
-                <main className="container">
-                    <li className="pure-menu pure-menu-horizontal center" style={{listStyle:"none"}}>
-                    <a href="javascript:void(0);" onClick={this.onClickOpened} className="pure-menu-heading pure-menu-link">Opened</a>
-                    <a href="javascript:void(0);" onClick={this.onClickAll} className="pure-menu-heading pure-menu-link">All</a>
-                    <a href="javascript:void(0);" onClick={this.onClickAccepted} className="pure-menu-heading pure-menu-link">Accepted</a>
-                    <a href="javascript:void(0);" onClick={this.onClickClosed} className="pure-menu-heading pure-menu-link">Closed</a>
+                <main className="cont">
+                    <span className="pure-menu pure-menu-horizontal center" style={{ listStyle: "none" }}>
+                        <a href="javascript:void(0);" onClick={this.onClickAll} className="pure-menu-heading pure-menu-link">All</a>
+                        <a href="javascript:void(0);" onClick={this.onClickOpened} className="pure-menu-heading pure-menu-link">Opened</a>
+                        <a href="javascript:void(0);" onClick={this.onClickAccepted} className="pure-menu-heading pure-menu-link">Accepted</a>
+                        <a href="javascript:void(0);" onClick={this.onClickClosed} className="pure-menu-heading pure-menu-link">Closed</a>
 
-                </li>
-                    <ComplaintItems {...this.state.complaints} account={this.state.accounts}/>
+                    </span>
+                    <ComplaintItems {...this.state.complaints} updateAcceptedArr={this.updateAcceptedArr} updateClosedArr={this.updateClosedArr} account={this.state.accounts} />
                 </main>
             </div>
         );
     };
 };
-export default withRouter( Home);
+export default withRouter(Home);

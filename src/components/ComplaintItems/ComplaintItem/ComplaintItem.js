@@ -9,7 +9,7 @@ let web3 = getWeb3();
 let complaintInstance = getContractInstance(ComplaintContract, address);
 class ComplaintItem extends Component {
     state = {
-        judge: false
+        judge: false,
     }
     async componentDidMount() {
         let cat = parseInt(this.props.cat);
@@ -46,6 +46,21 @@ class ComplaintItem extends Component {
         }else{
 
         }
+        // var date1 = new Date("7/13/2010");
+        var date2 = new Date();
+        var timeDiff = Math.abs(date2.getTime() - date.getTime());
+        var diffDays = Math.floor(timeDiff / (1000 * 3600 * 24)); 
+        console.log(diffDays);
+        let serious="";
+        if (this.props.accepted == "false" && this.props.closed == "false"&&diffDays>=7){
+            serious=" Acceptance Date Passed "
+        }
+        if (this.props.closed == "false" && this.props.accepted == "true"&&diffDays>=20){
+            serious+=" Closing Date Passed "
+        }
+        if (this.props.closed == "false" && this.props.accepted == "false"&&diffDays>=20){
+            serious=" Acceptance and Closing date passed "
+        }
         if (this.props.show) {
             return (
                 <li className={"ComplaintItem "+(color)}>
@@ -55,10 +70,11 @@ class ComplaintItem extends Component {
                     <label>Sub-category: {Constants.stringify(this.props.sub)}</label>
                     <label>Date :  {date.toDateString()}</label>
                     <label>Time :{date.toLocaleTimeString()}</label>
-                    <label>Complaint : {this.props.complaint}</label>
+                    <label style={{fontWeight:600}}>Complaint : {this.props.complaint}</label>
                     {/* <label>Accepted : {this.props.accepted}</label> */}
                     {/* <label>Closed : {this.props.closed}</label> */}
                     <label>creator : {this.props.creator}</label>
+                    <b>{serious}</b>
                     <div>
                         {this.props.accepted == "false" && this.props.closed == "false" && this.state.judge ?
                             <button onClick={this.onAccepted} id="acceptbtn">Accept</button>

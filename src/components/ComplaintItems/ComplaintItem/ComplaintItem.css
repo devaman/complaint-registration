@@ -8,8 +8,8 @@
     box-sizing: border-box; */
     display: flex;
     flex-flow: column;
-    width: 400px;
-    padding: 8px;
+    width: 410px;
+    padding: 8px 12px;
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 0px 30px 0px rgba(208, 208, 208, 0.35);
@@ -24,18 +24,18 @@
     transform: scale(1.1);
 }
 .red{
-    background-color: rgb(158, 0, 0);
-    color: white;
+    border-top:5px solid rgb(214, 0, 0);
+    border-bottom:5px solid rgb(214, 0, 0);
     /* border: 6px solid rgb(31, 31, 31); */
 }
 .green{
-    background-color: rgb(0, 98, 0);
-    color: white;
+    border-top:5px solid rgb(3, 197, 3);
+    border-bottom:5px solid rgb(3, 197, 3);
     /* border: 6px solid rgb(31, 31, 31); */
 }
 .yellow{
-    background-color: #f9ca24;
-    color: white;
+    border-top:5px solid #f9ca24;
+    border-bottom:5px solid #f9ca24;
     /* border: 6px solid rgb(31, 31, 31); */
 
 }

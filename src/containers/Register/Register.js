@@ -87,7 +87,9 @@ class Register extends Component {
                 <main className="container">
 
                     <h6>{this.state.msg}</h6>
-                    <form onSubmit={this.onFormSubmit}>
+
+                        <h2>REGISTER YOUR COMPLAINT</h2>
+                    <form className="center" onSubmit={this.onFormSubmit}>
                         <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={(e) => {
                             this.setState({
                                 name: e.target.value

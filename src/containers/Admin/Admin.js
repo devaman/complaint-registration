@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router";
 import ComplaintContract from '../../../build/contracts/Complaint.json'
 import { getWeb3, getContractInstance } from '../../utils/getWeb3'
+import './Admin.css'
 import Loader from '../../components/Loader/Loader.js';
 import address from "../../utils/ContractAddress";
 
@@ -73,9 +74,9 @@ class Admin extends Component {
                 </nav>
                 <main className="container">
                     <br />
-                    <h6>{this.state.msg}</h6>
+                    <h4>{this.state.msg}</h4>
 
-                    <form onSubmit={this.onFormSubmit}>
+                    <form className="center" onSubmit={this.onFormSubmit}>
                         <select required name="cat" value={this.state.cat} onChange={(e) => {
                             console.log(e.target.value);
 

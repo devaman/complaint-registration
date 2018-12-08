@@ -74,9 +74,16 @@ class Admin extends Component {
                 </nav>
                 <main className="container">
                     <br />
-                    <h4>{this.state.msg}</h4>
+                    <h3>{this.state.msg}</h3>
+                    <h2>ASSIGN THE COMPLAINT</h2>
 
                     <form className="center" onSubmit={this.onFormSubmit}>
+
+                    <div class="row">
+                             <div className="col-30">
+                                 <label>Category</label>
+                             </div>
+                         <div className="col-70">
                         <select required name="cat" value={this.state.cat} onChange={(e) => {
                             console.log(e.target.value);
 
@@ -88,6 +95,13 @@ class Admin extends Component {
                             <option value={1}>Electricity</option>
                             <option value={2}>Hostel</option>
                         </select><br />
+                        </div>
+                 </div>
+                  <div class="row">
+                             <div className="col-30">
+                                 <label>Sub-Category</label>
+                             </div>
+                         <div className="col-70">
                         <select required name="sub" value={this.state.sub} onChange={(e) => {
 
                             this.setState({
@@ -99,19 +113,37 @@ class Admin extends Component {
                             <option value={13}>Kailash Boys Hostel</option>
 
                         </select><br />
+                        </div>
+                 </div>
+
+                 <div class="row">
+                             <div className="col-30">
+                                 <label>Name</label>
+                             </div>
+                         <div className="col-70">
                         <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={(e) => {
 
                             this.setState({
                                 name: e.target.value
                             })
                         }} /><br />
+                         </div>
+                 </div>
+
+                 <div class="row">
+                             <div className="col-30">
+                                 <label>Address</label>
+                             </div>
+                         <div className="col-70">
                         <input type="text" placeholder="Address" name="address" value={this.state.address} onChange={(e) => {
 
                             this.setState({
                                 address: e.target.value
                             })
                         }} /><br />
-                        <input type="submit" value="Register it" />
+                    </div>
+                 </div>
+                        <input type="submit" value="Assign it" />
                     </form>
                 </main>
             </div>

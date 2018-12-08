@@ -2,7 +2,11 @@
     width: 200px;
 }*/
 
-
+.center {
+  margin: auto ;
+  width: 25%;
+  padding: 10px;
+}
 
 * {
   box-sizing: border-box;
@@ -41,7 +45,7 @@ input[type=submit] {
 
 
 input[type=submit]:hover {
-    background-color: #008080;
+    background-color: #3a7879;
 }
 /*.container {
     border-radius: 5px;

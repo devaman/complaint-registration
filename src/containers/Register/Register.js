@@ -83,22 +83,23 @@ class Register extends Component {
                     {this.props.admin ? <a href="javascript:void(0);" onClick={() => { this.props.history.push('/admin') }} className="pure-menu-heading pure-menu-link">Admin</a> : ""}
                
                 </nav>
-                <div className="center">
+                
 
                 <main className="container">
+                <br/>
 
                     <h3>{this.state.msg}</h3>
 
                         <h2>REGISTER YOUR COMPLAINT</h2>
 
                         
-                    <form onSubmit={this.onFormSubmit}>
+                    <form className="center" onSubmit={this.onFormSubmit}>
                  <div class="row">
                              <div className="col-30">
-                                 <label>First Name</label>
+                                 <label>Name</label>
                              </div>
                          <div className="col-70">
-                             <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={(e) => {
+                             <input type="text" placeholder="Enter Your Name" name="name" value={this.state.name} onChange={(e) => {
                             this.setState({
                                 name: e.target.value
                             })
@@ -112,7 +113,7 @@ class Register extends Component {
                                  <label>Roll No</label>
                              </div> 
                              <div className="col-70">
-                        <input type="text" placeholder="RollNo" name="rollno" value={this.state.rollno} onChange={(e) => {
+                        <input type="text" placeholder="Enter Your RollNo" name="rollno" value={this.state.rollno} onChange={(e) => {
 
                             this.setState({
                                 rollno: e.target.value
@@ -183,7 +184,7 @@ class Register extends Component {
                         <input type="submit" value="Register it" />
                     </form>
                 </main>
-                </div>
+               
             </div>
         );
     }

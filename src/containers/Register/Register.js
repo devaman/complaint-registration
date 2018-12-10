@@ -83,22 +83,51 @@ class Register extends Component {
                     {this.props.admin ? <a href="javascript:void(0);" onClick={() => { this.props.history.push('/admin') }} className="pure-menu-heading pure-menu-link">Admin</a> : ""}
                
                 </nav>
+                
 
                 <main className="container">
+                <br/>
 
-                    <h6>{this.state.msg}</h6>
-                    <form onSubmit={this.onFormSubmit}>
-                        <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={(e) => {
+                    <h3>{this.state.msg}</h3>
+
+                        <h2>REGISTER YOUR COMPLAINT</h2>
+
+                        
+                    <form className="center" onSubmit={this.onFormSubmit}>
+                 <div class="row">
+                             <div className="col-30">
+                                 <label>Name</label>
+                             </div>
+                         <div className="col-70">
+                             <input type="text" placeholder="Enter Your Name" name="name" value={this.state.name} onChange={(e) => {
                             this.setState({
                                 name: e.target.value
                             })
                         }} /><br />
-                        <input type="text" placeholder="RollNo" name="rollno" value={this.state.rollno} onChange={(e) => {
+                         </div>
+                 </div>
+
+
+                   <div class="row">
+                             <div className="col-30">
+                                 <label>Roll No</label>
+                             </div> 
+                             <div className="col-70">
+                        <input type="text" placeholder="Enter Your RollNo" name="rollno" value={this.state.rollno} onChange={(e) => {
 
                             this.setState({
                                 rollno: e.target.value
                             })
                         }} /><br />
+                        </div>
+                 </div>
+
+
+                 <div class="row">
+                             <div className="col-30">
+                                 <label>Category</label>
+                             </div> 
+                             <div className="col-70">
                         <select required name="cat" value={this.state.cat} onChange={(e) => {
                             console.log(e.target.value);
 
@@ -110,6 +139,16 @@ class Register extends Component {
                             <option value={1}>Electricity</option>
                             <option value={2}>Hostel</option>
                         </select><br />
+
+                    </div>
+                 </div>
+
+                 <div class="row">
+                             <div className="col-30">
+                                 <label>Sub-Category</label>
+                             </div> 
+                             <div className="col-70">
+
                         <select required name="sub" value={this.state.sub} onChange={(e) => {
 
                             this.setState({
@@ -121,15 +160,31 @@ class Register extends Component {
                             <option value={13}>Kailash Boys Hostel</option>
 
                         </select><br />
-                        <input type="text" placeholder="Your complaint" name="complaint" value={this.state.complaint} onChange={(e) => {
+
+                </div>
+                 </div>
+
+
+                 <div class="row">
+                             <div className="col-30">
+                                 <label>Complaint</label>
+                             </div> 
+                             <div className="col-70">
+
+
+                        <textarea placeholder="Your complaint" name="complaint" value={this.state.complaint} onChange={(e) => {
 
                             this.setState({
                                 complaint: e.target.value
                             })
-                        }} /><br />
+                        }} ></textarea><br />
+
+                </div>
+                 </div>
                         <input type="submit" value="Register it" />
                     </form>
                 </main>
+               
             </div>
         );
     }

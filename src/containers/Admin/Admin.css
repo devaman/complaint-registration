@@ -2,6 +2,7 @@
     width: 200px;
 }*/
 
+
 .center {
   margin: auto ;
   width: 25%;
@@ -10,31 +11,29 @@
 
 * {
   box-sizing: border-box;
+  
 }
 h3{
-	color:seagreen;
+  color:seagreen;
 }
-input[type=text], select ,textarea{
+input[type=text], select {
   width: 100%;
-  padding: auto;
+  padding: 12px;
   margin: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
 }
-textarea{
-	height: 100px;
-}
 
 
 label {
-	 padding: auto;
+   padding: auto;
     display: block;
 }
 
 
 input[type=submit] {
-  background-color: #004c4c;
+  background-color: #008080;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -67,10 +66,10 @@ input[type=submit]:hover {
 
 
 h2{
-	text-align: center;
-	color: #008080;
-	font-size: 1.9em;
-	font-family: monospace;
+  text-align: center;
+  color: #008080;
+  font-size: 1.9em;
+  font-family: monospace;
 }
 
 .row:after {
